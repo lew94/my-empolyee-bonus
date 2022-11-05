@@ -12,17 +12,115 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('employee-bonus')
 
+
+employees = {
+        "3029557": "Diana Jordan",
+        "5029737": "Amal Phan",
+        "6500875": "Olivier Delarosa",
+        "1505669": "Cherise Mathis",
+        "3721969": "Amrit Wagner",
+        "5429547": "Cristina Dickens",
+        "8971943": "Amara Pitts"
+    }
+
 def get_employee_id():
     """
     Get the employee who data the user will be inputting to the sheet,
-    A list of employee names with there ID will be displayed for options"""
+    A list of employee names with there ID will be displayed for options#
+    """
+    
+    while True:
+        print("-----------"*7)
+        print('Please enter ID of the employee you wish to update:\n')
+        print('''Diana Jordan - 3029557\nAmal Phan - 5029737\nOlivier Delarosa - 6500875\nCherise Mathis - 1505669\nAmrit Wagner - 3721969\nCristina Dickens - 5429547\nAmara Pitts - 8971943
+        ''')
+        employee_selected = input("Employee ID:\n")
+        print("-----------"*7)
+        if validate_input(employee_selected):
+            if employee_selected not in employees:
+                print("\nThere is no employee with that ID please try again")
+                return get_employee_id()
+            else:
+                print("You have selected - "+ employees.get(employee_selected))
+                break
+    
+    return employee_selected
 
-    print('Please enter ID of the employee you wish to update:\n')
-    print('''
-Diana Jordan - 3029557\nAmal Phan - 5029737\nOlivier Delarosa - 6500875\nCherise Mathis - 1505669\nAmrit Wagner - 3721969\nCristina Dickens - 5429547\nAmara Pitts - 8971943
-    ''')
-    employee_selected = input("Empolyee ID: ")
-    print(f"You have selected - {employee_selected}")
 
 
-get_employee_id()
+def validate_input(selected):
+    """
+    Inside the try, converts all string values into integers.
+    Raises ValueError if string cannot be converted into int,
+    or if there aren't exactly 6 values
+    """
+    
+    try:
+        [int(id) for id in selected]
+        if len(selected) != 7:
+            raise ValueError(
+                f"\nExactly 6 values required, you provided {len(selected)}"
+            )
+    except ValueError as e:
+        print(f"\nInvalid data: {e}, please try again.\n")
+        return False
+    return True
+
+
+def input_hours():
+    while True:
+        hours_worked = float(input("\nPlease Enter the Hours Worked:\n"))
+        if valid_values(hours_worked):
+            print("Data is valid!")
+            break
+    return hours_worked
+
+
+def input_tickets():
+    while True: 
+        solved_tickets = input("\nPlease enter the number of tickets solved by the employee:\n")
+        if valid_values(solved_tickets):
+            print("Data is valid!")
+            break
+    return solved_tickets
+
+def valid_values(value):
+    try:
+        input = int(value)
+    except ValueError:
+        try:
+            input = float(value)
+        except ValueError as e:
+            print(f"\nInvalid data: {e}, please try again.\n")
+            return False
+    return True
+
+
+def cal_hourly(hours):
+    hourly_pay_total = float(hours)*12.30
+    hourly_pay_total = round(hourly_pay_total, 2)
+    print(hourly_pay_total)
+    return hourly_pay_total
+
+def cal_bonus(tickets):
+    bonus_total = float(tickets)*4.5
+    bonus_total = round(bonus_total, 2)
+    print(bonus_total)
+    return bonus_total
+
+
+def main():
+    '''
+    Runs all code
+    '''
+    get_employee_id()
+    employee_hours = input_hours()
+    total_hours = cal_hourly(employee_hours)
+    employee_tickets = input_tickets()
+    total_tickets = cal_bonus(employee_tickets)
+    total_pay = total_hours+total_tickets
+    print(total_pay)
+    
+
+
+main()
