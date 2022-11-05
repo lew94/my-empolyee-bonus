@@ -111,17 +111,17 @@ maths for hourly and bonus rates
 def cal_hourly(hours):
     hourly_pay_total = float(hours)*12.30
     hourly_pay_total = round(hourly_pay_total, 2)
-    print(hourly_pay_total)
+    print(f"There Total hourly wages is €{hourly_pay_total}")
     return hourly_pay_total
 
 def cal_bonus(tickets):
     bonus_total = float(tickets)*4.5
     bonus_total = round(bonus_total, 2)
-    print(bonus_total)
+    print(f"There Bonus Total is €{bonus_total}")
     return bonus_total
 
 def update_sheet_data(data, id_sheet):
-    print("updating employee records")
+    print("updating employee records...")
     bonus_worksheet = SHEET.worksheet(id_sheet)
     bonus_worksheet.append_row(data)
 
@@ -141,6 +141,7 @@ def main():
     total_tickets = cal_bonus(employee_tickets)
     append_list.append(total_tickets)
     total_pay = total_hours+total_tickets
+    print(f"There total pay is €{total_pay}")
     append_list.append(total_pay)
     print(append_list)
     update_sheet_data(append_list, get_id)
