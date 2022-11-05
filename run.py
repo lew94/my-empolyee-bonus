@@ -84,7 +84,7 @@ def input_tickets():
     Gets employee number of solved tickets for that week
     '''
     while True: 
-        solved_tickets = input("\nPlease enter the number of tickets solved by the employee:\n")
+        solved_tickets = float(input("\nPlease enter the number of tickets solved by the employee:\n"))
         if valid_values(solved_tickets):
             print("Data is valid!")
             break
@@ -120,19 +120,29 @@ def cal_bonus(tickets):
     print(bonus_total)
     return bonus_total
 
+def update_sheet_data(data, id_sheet):
+    print("updating employee records")
+    bonus_worksheet = SHEET.worksheet(id_sheet)
+    bonus_worksheet.append_row(data)
+
 
 def main():
     '''
     Runs all code
     '''
-    get_employee_id()
+    append_list = []
+    get_id = get_employee_id()
     employee_hours = input_hours()
-    total_hours = cal_hourly(employee_hours)
+    append_list.append(employee_hours)
     employee_tickets = input_tickets()
+    append_list.append(employee_tickets)
+    total_hours = cal_hourly(employee_hours)
+    append_list.append(total_hours)
     total_tickets = cal_bonus(employee_tickets)
+    append_list.append(total_tickets)
     total_pay = total_hours+total_tickets
-
-    
-
+    append_list.append(total_pay)
+    print(append_list)
+    update_sheet_data(append_list, get_id)
 
 main()
