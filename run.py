@@ -12,7 +12,17 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('employee-bonus')
 
-oliver = SHEET.worksheet('6500875')
-info = oliver.get_all_values()
+def get_employee_id():
+    """
+    Get the employee who data the user will be inputting to the sheet,
+    A list of employee names with there ID will be displayed for options"""
 
-print(info)
+    print('Please enter ID of the employee you wish to update:\n')
+    print('''
+Diana Jordan - 3029557\nAmal Phan - 5029737\nOlivier Delarosa - 6500875\nCherise Mathis - 1505669\nAmrit Wagner - 3721969\nCristina Dickens - 5429547\nAmara Pitts - 8971943
+    ''')
+    employee_selected = input("Empolyee ID: ")
+    print(f"You have selected - {employee_selected}")
+
+
+get_employee_id()
