@@ -12,7 +12,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('employee-bonus')
 
-
+# List of all employees
 employees = {
         "3029557": "Diana Jordan",
         "5029737": "Amal Phan",
@@ -68,6 +68,9 @@ def validate_input(selected):
 
 
 def input_hours():
+    '''
+    Gets employee hours they worked that week
+    '''
     while True:
         hours_worked = float(input("\nPlease Enter the Hours Worked:\n"))
         if valid_values(hours_worked):
@@ -77,6 +80,9 @@ def input_hours():
 
 
 def input_tickets():
+    '''
+    Gets employee number of solved tickets for that week
+    '''
     while True: 
         solved_tickets = input("\nPlease enter the number of tickets solved by the employee:\n")
         if valid_values(solved_tickets):
@@ -85,6 +91,9 @@ def input_tickets():
     return solved_tickets
 
 def valid_values(value):
+    '''
+    Validates users inputs are int or floats
+    '''
     try:
         input = int(value)
     except ValueError:
@@ -95,7 +104,10 @@ def valid_values(value):
             return False
     return True
 
-
+"""
+maths for hourly and bonus rates
+12.30 hourly wage and 4.50 per solved ticket
+"""
 def cal_hourly(hours):
     hourly_pay_total = float(hours)*12.30
     hourly_pay_total = round(hourly_pay_total, 2)
@@ -119,7 +131,7 @@ def main():
     employee_tickets = input_tickets()
     total_tickets = cal_bonus(employee_tickets)
     total_pay = total_hours+total_tickets
-    print(total_pay)
+
     
 
 
