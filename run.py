@@ -154,13 +154,13 @@ def main():
     total_pay = total_hours+total_tickets
     print(f"There total pay is €{total_pay}")
     append_list.append(total_pay)
-    print(append_list)
     update_sheet_data(append_list, get_id)
 
 main()
 while True:
     update_another = input("Do you want to update another employee's record (yes/no)?\n ")
     if update_another.lower() == "no" or update_another.lower() == "n":
+        print("Thank you, Goodbye.")
         break
     else:
         main()
