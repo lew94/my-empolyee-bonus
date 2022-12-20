@@ -157,5 +157,10 @@ def main():
     print(append_list)
     update_sheet_data(append_list, get_id)
 
-
 main()
+while True:
+    update_another = input("Do you want to update another employee's record (yes/no)?\n ")
+    if update_another.lower() == "no" or update_another.lower() == "n":
+        break
+    else:
+        main()
