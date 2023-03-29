@@ -4,6 +4,10 @@
 ### **Python  Essentials**
 ### Diploma in Software Development (E-commerce Applications) <br>
 ### **Link to live site - https://github.com/lew94/my-empolyee-bonus**
+### **Link to Google Sheets for employee details - https://docs.google.com/spreadsheets/d/1TLzd8eQapILgfxhnUDEkeyGl_YOlOiX5OMzrAr6Y06c/edit?usp=sharing**
+### **Link to Live Site Hosted on Heroku - https://my-employee-bonus.herokuapp.com/**
+
+
 <br>
 
 ## **Aim**
@@ -51,10 +55,10 @@ The user runs the program
 
 Once employee is found :
 
- - User will be prompted to enter the hours that employee worked
- - data will be validated for int or float values
+ - User will be prompted to enter the hours that employee worked 
+ - data will be validated for int and will not accept letters or Float values
  - User will be prompted to end the number of tickets the employee solved
- - Date is check and again validated
+ - Data is check and again validated
 
 Once all details are inputted to the system the calculation will take over 
 - The hours work will be times by €12.30 and the value stored and printed
@@ -64,10 +68,43 @@ Once all details are inputted to the system the calculation will take over
 
 Finally the system will take the employee ID and search for the correct Google sheets file and append the date to the end of the file.
 
+## Below are screenshots of the process
+<br>
+
+![Test 1](imgs/example1.png)
+
+Here Is the Google sheets form with inputs already
+<br>
+
+![Test 1](imgs/example2.png)
+This is the Heroku Page with the program running
+<br>
+
+![Test 1](imgs/example3.png)
+Code is tested with incorrect data types for input
+
+<br>
+
+![Test 1](imgs/example4.png)
+Finally correct data is entered 
+
+<br>
+
+![Test 1](imgs/example5.png)
+Data is processed and results are printed
+<br>
+
+![Test 1](imgs/example6.png)
+The Google sheet file is updated
 <br>
 
 
 ## *Testing and validating**
+
+I have manually tested this project on all bases included on local device, on Gitpod and on the Heroku hosted site for signs of failure and the system has now passed successfully on each location.
+
+Code has also be put through PEP8online and passed.
+Link to site - https://pep8ci.herokuapp.com/
 
 So for the site to be successful the app I would need to run but most important It must validate the results and write the information to the correct sheet and cell. Below are images of the tests ran on the site.
 
@@ -91,10 +128,18 @@ So for the site to be successful the app I would need to run but most important 
 
 <br>
 
+## Deployment:
+- Fork or clone this repository
+- Create a new Heroku app
+- Set the buildbacks to Python and NodeJS in that order
+- Link the Heroku app to the repository
+- Click Deploy
+
+<br>
+
 ## Problems/ Bugs:
 
-Still more validation on the project could take place, while it works right now I want to update later to include dates and limits to the calculations and validations.
-Current deployment on heroku is causing a gspread issue which doesn't seem to be fixed.
+As of now there are no current reported bugs on the system. 
 
 
 <br>
