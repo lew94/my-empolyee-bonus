@@ -71,11 +71,21 @@ def input_hours():
     '''
     Gets employee hours they worked that week
     '''
+    # while True:
+    #     hours_worked = float(input("\nPlease Enter the Hours Worked:\n"))
+    #     if valid_values(hours_worked):
+    #         print("Data is valid!")
+    #         break
+    # return hours_worked
+
     while True:
-        hours_worked = float(input("\nPlease Enter the Hours Worked:\n"))
-        if valid_values(hours_worked):
+        try:
+            hours_worked = int(input("\nPlease Enter the Hours Worked:\n"))
             print("Data is valid!")
             break
+        except ValueError:
+            print("\nInvalid data: Hours worked should be a whole number. Please try again.\n")
+    
     return hours_worked
 
 
@@ -83,14 +93,22 @@ def input_tickets():
     '''
     Gets employee number of solved tickets for that week
     '''
+    # while True:
+    #     solved_tickets = float(
+    #         input("\nPlease enter the number of tickets solved by the employee:\n"))
+    #     if valid_values(solved_tickets):
+    #         print("Data is valid!")
+    #         break
+    # return solved_tickets
     while True:
-        solved_tickets = float(
-            input("\nPlease enter the number of tickets solved by the employee:\n"))
-        if valid_values(solved_tickets):
+        try:
+            solved_tickets = int(input("\nPlease enter the number of tickets solved by the employee:\n"))
             print("Data is valid!")
             break
+        except ValueError:
+            print("\nInvalid data: Number of tickets should be a whole number. Please try again.\n")
+    
     return solved_tickets
-
 
 def valid_values(value):
     '''
